@@ -16,7 +16,7 @@
 ### Taking Notes
 
 * [convert int to a hex str](https://stackoverflow.com/questions/2269827/how-to-convert-an-int-to-a-hex-string#2269836)
-    * `'{:x}'.format(i)`
+    * `'{:02x}'.format(i)`
     * `chr, hex`
 * [convert hex str to int](https://stackoverflow.com/questions/209513/convert-hex-string-to-int-in-python)
     * `int(string_1, 16)`

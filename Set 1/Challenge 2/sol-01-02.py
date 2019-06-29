@@ -8,7 +8,7 @@ def fixedXor(a, b):
         return int(h, 16)
 
     def int2Hex(i):
-        return '{:x}'.format(i)
+        return '{:02x}'.format(i)
 
     result = ''
     for i in range(min(len(a), len(b))):
