@@ -49,28 +49,39 @@ def single_byte_xor(c):
     result = ''
     closeness = -1
     for k in range(256):
+        # tmp_result = keyTest(c, k)
+        # tmp_closeness = dist2eng(tmp_result)
+        # if (tmp_closeness != -1 and tmp_closeness < closeness) or closeness == -1:
+        #     result = tmp_result
+        #     closeness = tmp_closeness
         try:
-            tmp_result = keyTest(c, 53)
+            tmp_result = keyTest(c, k)
             tmp_closeness = dist2eng(tmp_result)
             if (tmp_closeness != -1 and tmp_closeness < closeness) or closeness == -1:
                 result = tmp_result
                 closeness = tmp_closeness
         except Exception:
             pass
-        # print('key{}'.format(k), tmp_result, tmp_closeness)
     return (result, closeness)
 
 def main():
     if (len(sys.argv) > 1):
-        try:
-            print('[+] Decrypting:\n {}'.format(sys.argv[1]))
-            plain_text = single_byte_xor(sys.argv[1])
-            print('[+] Got result:\n', plain_text)
-        except Exception as e:
-            print('[x] fixedXor error: ' + str(e))
+        f = open(sys.argv[1])
+        result = ''
+        closeness = -1
+        cur_line = None
+        for line in f.readlines():
+            tmp_result = single_byte_xor(line.strip())
+            # print(tmp_result)
+            if (tmp_result[1] != -1 and tmp_result[1] < closeness) or closeness == -1:
+                result = tmp_result[0]
+                closeness = tmp_result[1]
+                cur_line = line
+        print('[+] Decrypting:\n {}'.format(sys.argv[1]))
+        print('[+] Got result:\n', result, cur_line, closeness)
         
     else:
-        print('plz pass in the cipher text(hex encoded str xor\'d by a single character)...')
+        print('plz pass in the file path...')
 
 if __name__ == "__main__":
     main()
