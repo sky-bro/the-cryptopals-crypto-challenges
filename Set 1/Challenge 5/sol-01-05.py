@@ -6,6 +6,12 @@ def repeating_key_xor_enc(p, k):
         c += '{:02x}'.format(ord(p[i]) ^ ord(k[i % len(k)]))
     return c
 
+def repeating_key_xor_dec(c, k):
+    p = []
+    for i in range(len(c)):
+        p.append(c[i] ^ ord(k[i % len(k)]))
+    return p
+
 def main():
     if (len(sys.argv) > 1):
         try:

@@ -28,3 +28,11 @@ For each block, the single-byte XOR key that produces the best looking histogram
 
 ### No, that's not a mistake.
 > We get more tech support questions for this challenge than any of the other ones. We promise, there aren't any blatant errors in this text. In particular: the "wokka wokka!!!" edit distance really is 37.
+
+### Answer
+
+* the key is: `Terminator X: Bring the noise`
+
+### REF
+
+* [Break Repeating-Key XOR](https://thmsdnnr.com/tutorials/javascript/cryptopals/2017/09/16/cryptopals-set1-challenge-6-break-repeating-key-XOR.html)
