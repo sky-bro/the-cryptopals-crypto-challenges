@@ -3,7 +3,7 @@ import base64
 from Crypto.Cipher import AES
 
 # pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS) 
-unpad = lambda s : s[:-ord(s[len(s)-1:])]
+unpad = lambda s : s[:-ord(s[-1])]
 
 def main():
     if len(sys.argv) < 2:
