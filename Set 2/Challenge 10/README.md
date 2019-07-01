@@ -13,3 +13,7 @@ The file here is intelligible (somewhat) when CBC decrypted against "YELLOW SUBM
 ### Don't cheat.
 
 Do not use OpenSSL's CBC code to do CBC mode, even to verify your results. What's the point of even doing this stuff if you aren't going to learn from it?
+
+### REF
+
+[Block Ciphers Modes of Operation](http://www.crypto-it.net/eng/theory/modes-of-block-ciphers.html)

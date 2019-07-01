@@ -1,19 +1,40 @@
-import sys
 import base64
 from Crypto.Cipher import AES
 
-# pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS) 
-unpad = lambda s : s[:-ord(s[-1])]
+class AES_ECB:
+    def __init__(self, key, BS=16):
+        self.cipher = AES.new(key)
+        self.BS = BS
+
+    def _pad(self, s):
+        needed_bytes_num = self.BS - len(s) % self.BS
+        return s + bytes([needed_bytes_num] * needed_bytes_num)
+
+    def _unpad(self, s):
+        return s[:-s[-1]]
+
+    def encrypt(self, p):
+        p = self._pad(p)
+        result = b''
+        for i in range(0, len(p), self.BS):
+            result += self.cipher.encrypt(p[i:i+self.BS])
+        return result
+
+    def decrypt(self, c):
+        result = b''
+        for i in range(0, len(c), self.BS):
+            result += self.cipher.decrypt(c[i:i+self.BS])
+        return self._unpad(result)
 
 def main():
-    if len(sys.argv) < 2:
-        print('Please pass the file path...')
-        return -1
-    f = open(sys.argv[1])
+    # cipher = AES_ECB('a'*16)
+    # c = cipher.encrypt(b'abc')
+    # print(cipher.decrypt(c))
+    # return
+    f = open('7.txt')
     c = base64.b64decode(f.read())
-    aes_ecb = AES.new('YELLOW SUBMARINE')
+    aes_ecb = AES_ECB('YELLOW SUBMARINE')
     text = aes_ecb.decrypt(c).decode()
-    text = unpad(text)
     print(text)
 
 if __name__ == "__main__":
