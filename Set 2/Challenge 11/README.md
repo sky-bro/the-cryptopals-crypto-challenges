@@ -16,3 +16,7 @@ Under the hood, have the function append 5-10 bytes (count chosen randomly) befo
 Now, have the function choose to encrypt under ECB 1/2 the time, and under CBC the other half (just use random IVs each time for CBC). Use rand(2) to decide which to use.
 
 Detect the block cipher mode the function is using each time. You should end up with a piece of code that, pointed at a block box that might be encrypting ECB or CBC, tells you which one is happening.
+
+# notes
+
+* use `os.urandom(size)` to generate random byte string for **cryptographic use**
