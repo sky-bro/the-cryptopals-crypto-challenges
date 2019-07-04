@@ -4,8 +4,6 @@ import base64
 from Crypto.Cipher import AES
 from random import randint
 
-print(os.getcwd())
-
 def random_bytes(size=16):
     return os.urandom(size)
 
