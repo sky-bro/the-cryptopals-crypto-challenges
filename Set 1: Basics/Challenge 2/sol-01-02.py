@@ -1,10 +1,13 @@
 import sys
 
+# requires len(bytes_a)=len(bytes_b)
 def bytes_xor(bytes_a, bytes_b):
-    result = []
-    for i in range(min(len(bytes_a), len(bytes_b))):
-        result.append(bytes_a[i] ^ bytes_b[i])
+    result = [a^b for (a,b) in zip(bytes_a, bytes_b)]
     return bytes(result)
+    # result = []
+    # for i in range(min(len(bytes_a), len(bytes_b))):
+    #     result.append(bytes_a[i] ^ bytes_b[i])
+    # return bytes(result)
 
 def fixedXor(a, b):
     a = bytes.fromhex(a)

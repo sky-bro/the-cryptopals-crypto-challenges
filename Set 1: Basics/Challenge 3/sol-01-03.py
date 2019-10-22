@@ -48,7 +48,7 @@ def single_byte_xor(c):
     # print('length of c', len(c))
     result = ''
     closeness = -1
-    for k in range(256):
+    for _ in range(256):
         try:
             tmp_result = keyTest(c, 53)
             tmp_closeness = dist2eng(tmp_result)
