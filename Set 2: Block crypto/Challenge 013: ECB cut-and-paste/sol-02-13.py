@@ -67,6 +67,11 @@ def enc_profile(profile_str):
 def dec_profile(crypted_profile):
     return cipher.decrypt(crypted_profile)
 
+def get_each_blk(blks, BS=16):
+    for i in range(0, len(blks), BS):
+        tmp = blks[i:i+BS]
+        yield tmp
+
 def adversary():
     '''
 +++ email=xxxx@xxxx.
@@ -79,9 +84,16 @@ def adversary():
     email = b'a'*(BS - 3 - 6) + b'@a.'
     email += b'admin' + bytes([pad_len] * pad_len)
     email += b'a' * (BS - 13)
+    print("Try Email:", email)
+
     c0 = profile_for(email.decode())
     c0 = enc_profile(c0.encode())
+    print("\nGot ciphertext:")
+    list(map(print, get_each_blk(c0, BS)))
+
     crypted_profile = c0[0:BS] + c0[2*BS:3*BS] + c0[BS:2*BS]
+    print('\nConstructed Crypted_profile:')
+    list(map(print, get_each_blk(crypted_profile, BS)))
 
     # email=input('Email: ')
     # while email:
@@ -97,8 +109,8 @@ def adversary():
 
 def main():
     crypted_profile = adversary()
-    print('Constructed Crypted_profile:\n', crypted_profile)
     profile_str = dec_profile(crypted_profile).decode()
+    print("\nConstructed Profile")
     print(profile_str)
     profile_json = parse_profile(profile_str)
     print(profile_json)

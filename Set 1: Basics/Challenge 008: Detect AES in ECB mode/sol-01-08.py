@@ -16,7 +16,7 @@ def main():
         i += 1
         rates_arr.append((i, detect_ecb_mode(line)))
     rates_arr.sort(key=lambda x: x[1])
-    print(rates_arr[0])
+    print(rates_arr)
 
 if __name__ == "__main__":
     main()
